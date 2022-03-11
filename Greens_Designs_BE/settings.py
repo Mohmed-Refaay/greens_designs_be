@@ -53,6 +53,8 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -134,3 +136,7 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = "media"
 
 MEDIA_URL = "/images/"
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+]
