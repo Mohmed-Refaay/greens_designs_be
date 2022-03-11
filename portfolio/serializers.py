@@ -4,14 +4,11 @@ from rest_framework import serializers
 from .models import *
 
 
-class SectionSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Section
-        fields = "__all__"
-
-
 class ProjectSerializer(serializers.ModelSerializer):
     images = serializers.StringRelatedField(many=True)
+
+    def get_field_names(self, declared_fields, info):
+        return super().get_field_names(declared_fields, info)
 
     class Meta:
         model = Project

@@ -9,17 +9,25 @@ from .serializers import *
 class all_sections(APIView):
     def get(self, request):
         sections = Section.objects.all()
-        serializer = SectionSerializer(sections, many=True)
-        return Response(serializer.data, status=202)
+        sections_json_data = list(sections.values())
+        return Response(sections_json_data, status=202)
 
 
 class projects_of_section(APIView):
     def get(self, request, id):
         try:
-            section = Section.objects.get(id=id)
-            projects = section.projects.all()
-            serializer = ProjectSerializer(projects, many=True)
-            return Response(serializer.data, status=202)
+            section = Section.objects.get(pk=id)
+            projects_data = list(section.projects.all().values())
+
+            data = []
+            for project in projects_data:
+                data.append({
+                    "id": project["id"],
+                    "title": project["title"],
+                    "cover_image": project["cover_image"]
+                })
+
+            return Response(data, status=202)
         except:
             return Response({"messge": "This Section is not Found!"}, status=404)
 
@@ -27,8 +35,8 @@ class projects_of_section(APIView):
 class project_details(APIView):
     def get(self, request, id):
         try:
-            project = Project.objects.get(pk=id)
+            project = Project.objects.get(id=id)
             serializer = ProjectSerializer(project, many=False)
             return Response(serializer.data, status=202)
         except:
-            return Response({"messge": "This Section is not Found!"}, status=404)
+            return Response({"messge": "This project is not Found!"}, status=404)
