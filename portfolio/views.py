@@ -6,14 +6,14 @@ from .serializers import *
 # Create your views here.
 
 
-class all_sections(APIView):
+class AllSections(APIView):
     def get(self, request):
         sections = Section.objects.all()
         sections_json_data = list(sections.values())
         return Response(sections_json_data, status=202)
 
 
-class projects_of_section(APIView):
+class ProjectsOfSection(APIView):
     def get(self, request, id):
         try:
             section = Section.objects.get(pk=id)
@@ -32,7 +32,7 @@ class projects_of_section(APIView):
             return Response({"messge": "This Section is not Found!"}, status=404)
 
 
-class project_details(APIView):
+class ProjectDetails(APIView):
     def get(self, request, id):
         try:
             project = Project.objects.get(id=id)
