@@ -7,9 +7,12 @@ from .models import *
 class ProjectSerializer(serializers.ModelSerializer):
     images = serializers.StringRelatedField(many=True)
 
-    def get_field_names(self, declared_fields, info):
-        return super().get_field_names(declared_fields, info)
-
     class Meta:
         model = Project
+        fields = "__all__"
+
+
+class ContactSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Contact
         fields = "__all__"

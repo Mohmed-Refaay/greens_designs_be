@@ -40,3 +40,14 @@ class ProjectDetails(APIView):
             return Response(serializer.data, status=202)
         except:
             return Response({"messge": "This project is not Found!"}, status=404)
+
+
+class AddContact(APIView):
+    def post(self, request):
+        serializer = ContactSerializer(data=request.data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.validated_data, status=202)
+        else:
+            return Response({"message": "Please enter valid data!"}, status=400)
