@@ -29,7 +29,7 @@ SECRET_KEY = 'h(*v2h1^f=gb6_g(8#%g)a)enh)(@zv2)0wl+xqo-tlilw)o1e'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["164.92.86.19", "localhost"]
+ALLOWED_HOSTS = ["164.92.86.19", "localhost", "http://www.greensdesigns.com/"]
 
 
 # Application definition
@@ -138,4 +138,5 @@ MEDIA_ROOT = "media"
 
 MEDIA_URL = "/images/"
 
-CORS_ALLOWED_ORIGINS = ["164.92.86.19", "http://localhost:3000"]
+CORS_ALLOWED_ORIGINS = ["164.92.86.19",
+                        "http://localhost:3000", "http://www.greensdesigns.com/"]
